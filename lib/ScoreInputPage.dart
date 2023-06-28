@@ -39,7 +39,7 @@ class _ScoreInputPage extends State<ScoreInputPage> {
 
   final score_regxp2 = RegExp(
     caseSensitive: false,
-    '[5-9][1-9]',
+    '[6-9][0]|[5-9][1-9]',
   );
 
   void dispose() {
@@ -250,11 +250,9 @@ class _ScoreInputPage extends State<ScoreInputPage> {
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return '得点が入力されていません。';
-                            } else if (score_regxp
-                                .hasMatch(_Japanese_score.text)) {
+                            } else if (score_regxp.hasMatch(value)) {
                               return score_error;
-                            } else if (score_regxp2
-                                .hasMatch(_Japanese_score.text)) {
+                            } else if (score_regxp2.hasMatch(value)) {
                               return score_error;
                             }
                             return null;
@@ -281,10 +279,9 @@ class _ScoreInputPage extends State<ScoreInputPage> {
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return '得点が入力されていません。';
-                            } else if (score_regxp.hasMatch(_math_score.text)) {
+                            } else if (score_regxp.hasMatch(value)) {
                               return score_error;
-                            } else if (score_regxp2
-                                .hasMatch(_math_score.text)) {
+                            } else if (score_regxp2.hasMatch(value)) {
                               return score_error;
                             }
                             return null;
@@ -311,11 +308,9 @@ class _ScoreInputPage extends State<ScoreInputPage> {
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return '得点が入力されていません。';
-                            } else if (score_regxp
-                                .hasMatch(_English_score.text)) {
+                            } else if (score_regxp.hasMatch(value)) {
                               return score_error;
-                            } else if (score_regxp2
-                                .hasMatch(_English_score.text)) {
+                            } else if (score_regxp2.hasMatch(value)) {
                               return score_error;
                             }
                             return null;
@@ -342,11 +337,9 @@ class _ScoreInputPage extends State<ScoreInputPage> {
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return '得点が入力されていません。';
-                            } else if (score_regxp
-                                .hasMatch(_science_score.text)) {
+                            } else if (score_regxp.hasMatch(value)) {
                               return score_error;
-                            } else if (score_regxp2
-                                .hasMatch(_science_score.text)) {
+                            } else if (score_regxp2.hasMatch(value)) {
                               return score_error;
                             }
                             return null;
@@ -373,11 +366,9 @@ class _ScoreInputPage extends State<ScoreInputPage> {
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return '得点が入力されていません。';
-                            } else if (score_regxp
-                                .hasMatch(_social_studies_score.text)) {
+                            } else if (score_regxp.hasMatch(value)) {
                               return score_error;
-                            } else if (score_regxp2
-                                .hasMatch(_social_studies_score.text)) {
+                            } else if (score_regxp2.hasMatch(value)) {
                               return score_error;
                             }
                             return null;
