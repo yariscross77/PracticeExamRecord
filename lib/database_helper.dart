@@ -21,6 +21,11 @@ class DatabaseHelper {
   static final columnScienceScore = 'science_score';
   static final columnSocialStudiesScore = 'social_studies_score';
   static final columnSumScore = 'sum_score';
+  static final columnFukushimaRank = 'fukushima_rank';
+  static final columnTachibanaRank = 'tachibana_rank';
+  static final columnFukushimaEastRank = 'fukushima_east_rank';
+  static final columnFukushimaSouthRank = 'fukushima_south_rank';
+  static final columnFukushimaSeikeiRank = 'fukushima_seikei_rank';
 
   // DatabaseHelper クラスを定義
   DatabaseHelper._privateConstructor();
@@ -78,23 +83,34 @@ class DatabaseHelper {
             $columnEnglishScore INTEGER NOT NULL,
             $columnScienceScore INTEGER NOT NULL,
             $columnSocialStudiesScore INTEGER NOT NULL,
-            $columnSumScore INTEGER NOT NULL
+            $columnSumScore INTEGER NOT NULL,
+            $columnFukushimaRank TEXT NOT NULL,
+            $columnTachibanaRank TEXT NOT NULL,
+            $columnFukushimaEastRank TEXT NOT NULL,
+            $columnFukushimaSouthRank TEXT NOT NULL,
+            $columnFukushimaSeikeiRank TEXT NOT NULL
           )
           ''');
   }
 
   // 登録処理
   Future<int> insert(
-      String practice_exam_name,
-      String practice_exam_date,
-      String practice_exam_date_show,
-      int deviation_score,
-      int Japanese_score,
-      int math_score,
-      int English_score,
-      int science_score,
-      int social_studies_score,
-      int sum_score) async {
+    String practice_exam_name,
+    String practice_exam_date,
+    String practice_exam_date_show,
+    int deviation_score,
+    int Japanese_score,
+    int math_score,
+    int English_score,
+    int science_score,
+    int social_studies_score,
+    int sum_score,
+    String fukushima_rank,
+    String tachibana_rank,
+    String fukushima_east_rank,
+    String fukushima_south_rank,
+    String fukushima_seikei_rank,
+  ) async {
     Database? db = await instance.database;
     return await db!.insert(table, {
       columnPracticeExamName: practice_exam_name,
@@ -106,7 +122,12 @@ class DatabaseHelper {
       columnEnglishScore: English_score,
       columnScienceScore: science_score,
       columnSocialStudiesScore: social_studies_score,
-      columnSumScore: sum_score
+      columnSumScore: sum_score,
+      columnFukushimaRank: fukushima_rank,
+      columnTachibanaRank: tachibana_rank,
+      columnFukushimaEastRank: fukushima_east_rank,
+      columnFukushimaSouthRank: fukushima_south_rank,
+      columnFukushimaSeikeiRank: fukushima_seikei_rank,
     });
   }
 

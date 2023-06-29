@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'database_helper.dart';
 
+enum rank { S, A, B, C, D, E }
+
+rank _fukushima_rank = rank.S;
+rank _tachibana_rank = rank.S;
+rank _fukushima_east_rank = rank.S;
+rank _fukushima_south_rank = rank.S;
+rank _fukushima_seikei_rank = rank.S;
+
 class ScoreInputPage extends StatefulWidget {
   const ScoreInputPage({super.key});
 
@@ -24,13 +32,15 @@ class _ScoreInputPage extends State<ScoreInputPage> {
   String practice_exam_name = "error";
   String practice_exam_date = "";
   String practice_exam_date_show = "";
-  DateTime selectedDate = DateTime.now();
+  String _selectedDate = "受験日：選択されていません。";
+  String score_error = "0～50の間で入力してください。";
+
+  double font_size = 16;
   double padding_top = 20;
 
   bool isSelectedDateError = false;
 
-  String _selectedDate = "受験日：選択されていません。";
-  String score_error = "0点～50点の間で入力してください。";
+  DateTime selectedDate = DateTime.now();
 
   final score_regxp = RegExp(
     caseSensitive: false,
@@ -53,7 +63,7 @@ class _ScoreInputPage extends State<ScoreInputPage> {
       initialDate: selectedDate,
       firstDate: DateTime(DateTime.now().year),
       lastDate: DateTime(DateTime.now().year + 100),
-      locale: Locale('ja'),
+      locale: const Locale('ja'),
     );
 
     if (picked != null) {
@@ -377,6 +387,529 @@ class _ScoreInputPage extends State<ScoreInputPage> {
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, padding_top, 0, 0),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: DataTable(
+                            columns: [
+                              DataColumn(
+                                label: Text(
+                                  '志望校',
+                                  style: TextStyle(fontSize: font_size),
+                                ),
+                              ),
+                              DataColumn(
+                                label: Text(
+                                  '科',
+                                  style: TextStyle(fontSize: font_size),
+                                ),
+                              ),
+                              DataColumn(
+                                label: Text(
+                                  'ランク',
+                                  style: TextStyle(fontSize: font_size),
+                                ),
+                              ),
+                            ],
+                            rows: [
+                              DataRow(
+                                cells: [
+                                  DataCell(
+                                    Text(
+                                      '福島',
+                                      style: TextStyle(fontSize: font_size),
+                                    ),
+                                  ),
+                                  DataCell(
+                                    Text(
+                                      '普通',
+                                      style: TextStyle(fontSize: font_size),
+                                    ),
+                                  ),
+                                  DataCell(
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.S,
+                                                  groupValue: _fukushima_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimarankSelected(
+                                                        value);
+                                                  }),
+                                              Text('S'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.A,
+                                                  groupValue: _fukushima_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimarankSelected(
+                                                        value);
+                                                  }),
+                                              Text('A'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.B,
+                                                  groupValue: _fukushima_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimarankSelected(
+                                                        value);
+                                                  }),
+                                              Text('B'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.C,
+                                                  groupValue: _fukushima_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimarankSelected(
+                                                        value);
+                                                  }),
+                                              Text('C'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.D,
+                                                  groupValue: _fukushima_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimarankSelected(
+                                                        value);
+                                                  }),
+                                              Text('D'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.E,
+                                                  groupValue: _fukushima_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimarankSelected(
+                                                        value);
+                                                  }),
+                                              Text('E'),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              DataRow(
+                                cells: [
+                                  DataCell(Text(
+                                    '橘',
+                                    style: TextStyle(fontSize: font_size),
+                                  )),
+                                  DataCell(Text(
+                                    '普通',
+                                    style: TextStyle(fontSize: font_size),
+                                  )),
+                                  DataCell(
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.S,
+                                                  groupValue: _tachibana_rank,
+                                                  onChanged: (value) {
+                                                    _onTachibanarankSelected(
+                                                        value);
+                                                  }),
+                                              Text('S'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.A,
+                                                  groupValue: _tachibana_rank,
+                                                  onChanged: (value) {
+                                                    _onTachibanarankSelected(
+                                                        value);
+                                                  }),
+                                              Text('A'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.B,
+                                                  groupValue: _tachibana_rank,
+                                                  onChanged: (value) {
+                                                    _onTachibanarankSelected(
+                                                        value);
+                                                  }),
+                                              Text('B'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.C,
+                                                  groupValue: _tachibana_rank,
+                                                  onChanged: (value) {
+                                                    _onTachibanarankSelected(
+                                                        value);
+                                                  }),
+                                              Text('C'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.D,
+                                                  groupValue: _tachibana_rank,
+                                                  onChanged: (value) {
+                                                    _onTachibanarankSelected(
+                                                        value);
+                                                  }),
+                                              Text('D'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.E,
+                                                  groupValue: _tachibana_rank,
+                                                  onChanged: (value) {
+                                                    _onTachibanarankSelected(
+                                                        value);
+                                                  }),
+                                              Text('E'),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              DataRow(
+                                cells: [
+                                  DataCell(Text(
+                                    '福島東',
+                                    style: TextStyle(fontSize: font_size),
+                                  )),
+                                  DataCell(Text(
+                                    '普通',
+                                    style: TextStyle(fontSize: font_size),
+                                  )),
+                                  DataCell(
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.S,
+                                                  groupValue:
+                                                      _fukushima_east_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaEastrankSelected(
+                                                        value);
+                                                  }),
+                                              Text('S'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.A,
+                                                  groupValue:
+                                                      _fukushima_east_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaEastrankSelected(
+                                                        value);
+                                                  }),
+                                              Text('A'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.B,
+                                                  groupValue:
+                                                      _fukushima_east_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaEastrankSelected(
+                                                        value);
+                                                  }),
+                                              Text('B'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.C,
+                                                  groupValue:
+                                                      _fukushima_east_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaEastrankSelected(
+                                                        value);
+                                                  }),
+                                              Text('C'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.D,
+                                                  groupValue:
+                                                      _fukushima_east_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaEastrankSelected(
+                                                        value);
+                                                  }),
+                                              Text('D'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.E,
+                                                  groupValue:
+                                                      _fukushima_east_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaEastrankSelected(
+                                                        value);
+                                                  }),
+                                              Text('E'),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              DataRow(
+                                cells: [
+                                  DataCell(Text(
+                                    '福島南',
+                                    style: TextStyle(fontSize: font_size),
+                                  )),
+                                  DataCell(Text(
+                                    '国際文化',
+                                    style: TextStyle(fontSize: font_size),
+                                  )),
+                                  DataCell(
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.S,
+                                                  groupValue:
+                                                      _fukushima_south_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaSouthrankSelected(
+                                                        value);
+                                                  }),
+                                              Text('S'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.A,
+                                                  groupValue:
+                                                      _fukushima_south_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaSouthrankSelected(
+                                                        value);
+                                                  }),
+                                              Text('A'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.B,
+                                                  groupValue:
+                                                      _fukushima_south_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaSouthrankSelected(
+                                                        value);
+                                                  }),
+                                              Text('B'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.C,
+                                                  groupValue:
+                                                      _fukushima_south_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaSouthrankSelected(
+                                                        value);
+                                                  }),
+                                              Text('C'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.D,
+                                                  groupValue:
+                                                      _fukushima_south_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaSouthrankSelected(
+                                                        value);
+                                                  }),
+                                              Text('D'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.E,
+                                                  groupValue:
+                                                      _fukushima_south_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaSouthrankSelected(
+                                                        value);
+                                                  }),
+                                              Text('E'),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              DataRow(
+                                cells: [
+                                  DataCell(Text(
+                                    '福島成蹊',
+                                    style: TextStyle(fontSize: font_size),
+                                  )),
+                                  DataCell(Text(
+                                    '普通',
+                                    style: TextStyle(fontSize: font_size),
+                                  )),
+                                  DataCell(
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.S,
+                                                  groupValue:
+                                                      _fukushima_seikei_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaSeikeirankSelected(
+                                                        value);
+                                                  }),
+                                              Text('S'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.A,
+                                                  groupValue:
+                                                      _fukushima_seikei_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaSeikeirankSelected(
+                                                        value);
+                                                  }),
+                                              Text('A'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.B,
+                                                  groupValue:
+                                                      _fukushima_seikei_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaSeikeirankSelected(
+                                                        value);
+                                                  }),
+                                              Text('B'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.C,
+                                                  groupValue:
+                                                      _fukushima_seikei_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaSeikeirankSelected(
+                                                        value);
+                                                    print(value);
+                                                  }),
+                                              Text('C'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.D,
+                                                  groupValue:
+                                                      _fukushima_seikei_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaSeikeirankSelected(
+                                                        value);
+                                                  }),
+                                              Text('D'),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Radio(
+                                                  value: rank.E,
+                                                  groupValue:
+                                                      _fukushima_seikei_rank,
+                                                  onChanged: (value) {
+                                                    _onFukushimaSeikeirankSelected(
+                                                        value);
+                                                  }),
+                                              Text('E'),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                        child: Container(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            '※横にスクロールできます',
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, padding_top, 0, 0),
                         child: ElevatedButton(
                           child: Text(
                             '登録する',
@@ -435,6 +968,7 @@ class _ScoreInputPage extends State<ScoreInputPage> {
                                       child: Text('はい'),
                                       onPressed: () {
                                         _insert();
+                                        DataClear();
                                         Navigator.pop(context);
                                       },
                                     ),
@@ -445,14 +979,7 @@ class _ScoreInputPage extends State<ScoreInputPage> {
                           },
                         ),
                       ),
-                      /*
-                      ElevatedButton(
-                        onPressed: () {
-                          _select();
-                        },
-                        child: Text('確認'),
-                      ),
-                      */
+                      Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 50))
                     ],
                   ),
                 ),
@@ -462,6 +989,166 @@ class _ScoreInputPage extends State<ScoreInputPage> {
         ),
       ),
     );
+  }
+
+  String fukushima_rank() {
+    String _rank = "";
+
+    switch (_fukushima_rank) {
+      case rank.S:
+        _rank = "S";
+        break;
+      case rank.A:
+        _rank = "A";
+        break;
+      case rank.B:
+        _rank = "B";
+        break;
+      case rank.C:
+        _rank = "C";
+        break;
+      case rank.D:
+        _rank = "D";
+        break;
+      case rank.E:
+        _rank = "E";
+        break;
+    }
+    return _rank;
+  }
+
+  String tachibana_rank() {
+    String _rank = "";
+
+    switch (_tachibana_rank) {
+      case rank.S:
+        _rank = "S";
+        break;
+      case rank.A:
+        _rank = "A";
+        break;
+      case rank.B:
+        _rank = "B";
+        break;
+      case rank.C:
+        _rank = "C";
+        break;
+      case rank.D:
+        _rank = "D";
+        break;
+      case rank.E:
+        _rank = "E";
+        break;
+    }
+    return _rank;
+  }
+
+  String fukushima_east_rank() {
+    String _rank = "";
+
+    switch (_fukushima_east_rank) {
+      case rank.S:
+        _rank = "S";
+        break;
+      case rank.A:
+        _rank = "A";
+        break;
+      case rank.B:
+        _rank = "B";
+        break;
+      case rank.C:
+        _rank = "C";
+        break;
+      case rank.D:
+        _rank = "D";
+        break;
+      case rank.E:
+        _rank = "E";
+        break;
+    }
+    return _rank;
+  }
+
+  String fukushima_south_rank() {
+    String _rank = "";
+
+    switch (_fukushima_south_rank) {
+      case rank.S:
+        _rank = "S";
+        break;
+      case rank.A:
+        _rank = "A";
+        break;
+      case rank.B:
+        _rank = "B";
+        break;
+      case rank.C:
+        _rank = "C";
+        break;
+      case rank.D:
+        _rank = "D";
+        break;
+      case rank.E:
+        _rank = "E";
+        break;
+    }
+    return _rank;
+  }
+
+  String fukushima_seikei_rank() {
+    String _rank = "";
+
+    switch (_fukushima_seikei_rank) {
+      case rank.S:
+        _rank = "S";
+        break;
+      case rank.A:
+        _rank = "A";
+        break;
+      case rank.B:
+        _rank = "B";
+        break;
+      case rank.C:
+        _rank = "C";
+        break;
+      case rank.D:
+        _rank = "D";
+        break;
+      case rank.E:
+        _rank = "E";
+        break;
+    }
+    return _rank;
+  }
+
+  void _onFukushimarankSelected(value) {
+    setState(() {
+      _fukushima_rank = value;
+    });
+  }
+
+  void _onTachibanarankSelected(value) {
+    setState(() {
+      _tachibana_rank = value;
+    });
+  }
+
+  void _onFukushimaEastrankSelected(value) {
+    setState(() {
+      _fukushima_east_rank = value;
+    });
+  }
+
+  void _onFukushimaSouthrankSelected(value) {
+    setState(() {
+      _fukushima_south_rank = value;
+    });
+  }
+
+  void _onFukushimaSeikeirankSelected(value) {
+    setState(() {
+      _fukushima_seikei_rank = value;
+    });
   }
 
   void _insert() async {
@@ -488,11 +1175,30 @@ class _ScoreInputPage extends State<ScoreInputPage> {
       science_score,
       social_studies_score,
       sum_score,
+      fukushima_rank(),
+      tachibana_rank(),
+      fukushima_east_rank(),
+      fukushima_south_rank(),
+      fukushima_seikei_rank(),
     );
   }
 
-  void _select() async {
-    //await db_helper.select();
-    print(await db_helper.select());
+  void DataClear() {
+    _deviation_score.clear();
+    _Japanese_score.clear();
+    _math_score.clear();
+    _English_score.clear();
+    _science_score.clear();
+    _social_studies_score.clear();
+
+    setState(() {
+      practice_exam_name = 'error';
+      _selectedDate = "受験日：選択されていません。";
+      _fukushima_rank = rank.S;
+      _tachibana_rank = rank.S;
+      _fukushima_east_rank = rank.S;
+      _fukushima_south_rank = rank.S;
+      _fukushima_seikei_rank = rank.S;
+    });
   }
 }

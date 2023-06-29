@@ -95,7 +95,7 @@ class _GraphPage extends State<GraphPage> {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                    padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
                     child: DropdownButtonFormField(
                       decoration: InputDecoration(
                         labelText: '表示中の項目',
@@ -106,6 +106,10 @@ class _GraphPage extends State<GraphPage> {
                         DropdownMenuItem(
                           child: Text('合計点'),
                           value: 'sum_score',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('偏差値'),
+                          value: 'deviation_score',
                         ),
                         DropdownMenuItem(
                           child: Text('国語'),
@@ -139,21 +143,31 @@ class _GraphPage extends State<GraphPage> {
                       },
                     ),
                   ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 10, 5),
+                    child: Container(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        '※直近10回分のデータが表示されます',
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    ),
+                  ),
                   Expanded(
                     child: SfCartesianChart(
                       title: ChartTitle(text: SetGraphTitle()),
                       legend: Legend(isVisible: false),
                       primaryXAxis: CategoryAxis(),
-                      primaryYAxis: select_subject == 'sum_score'
-                          ? NumericAxis(minimum: 0, maximum: 250, interval: 50)
-                          : NumericAxis(minimum: 0, maximum: 50, interval: 10),
+                      primaryYAxis: NumericAxisData(),
                       tooltipBehavior: _tooltip,
                       series: <ChartSeries<ScoreModel, String>>[
                         ColumnSeries(
                           dataSource: score_data,
                           xValueMapper: (ScoreModel date, _) => date.date,
                           yValueMapper: (ScoreModel score, _) => score.score,
-                          name: '得点',
+                          name: select_subject == 'deviation_score'
+                              ? '偏差値'
+                              : '得点',
                           width: 0.8,
                           color: SetGraphColor(),
                           dataLabelSettings: DataLabelSettings(isVisible: true),
@@ -185,6 +199,9 @@ class _GraphPage extends State<GraphPage> {
       case 'sum_score':
         graph_title = '合計点';
         break;
+      case 'deviation_score':
+        graph_title = '偏差値';
+        break;
       case 'Japanese_score':
         graph_title = '国語';
         break;
@@ -211,6 +228,9 @@ class _GraphPage extends State<GraphPage> {
       case 'sum_score':
         color = Colors.cyan;
         break;
+      case 'deviation_score':
+        color = Colors.grey;
+        break;
       case 'Japanese_score':
         color = Colors.pink;
         break;
@@ -228,5 +248,18 @@ class _GraphPage extends State<GraphPage> {
         break;
     }
     return color;
+  }
+
+  NumericAxis NumericAxisData() {
+    NumericAxis y_data = new NumericAxis();
+
+    if (select_subject == 'sum_score') {
+      y_data = NumericAxis(minimum: 0, maximum: 250, interval: 50);
+    } else if (select_subject == 'deviation_score') {
+      y_data = NumericAxis(minimum: 0, maximum: 100, interval: 20);
+    } else {
+      y_data = NumericAxis(minimum: 0, maximum: 50, interval: 10);
+    }
+    return y_data;
   }
 }
