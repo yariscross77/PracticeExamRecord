@@ -29,7 +29,7 @@ class _HistoryPage extends State<HistoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('今までの記録'),
+        title: Text('今までの記録（' + _data.length.toString() + '）'),
       ),
       body: _data.length >= 1
           ? Container(

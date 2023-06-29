@@ -36,7 +36,6 @@ class _DetailPage extends State<DetailPage> {
     super.initState();
     _ID = widget.ID;
     _getDataFromDatabase();
-    // print('受け渡し' + _ID.toString());
   }
 
   Future<void> _getDataFromDatabase() async {
@@ -71,245 +70,244 @@ class _DetailPage extends State<DetailPage> {
       body: Container(
         child: Padding(
           padding: EdgeInsets.all(15),
-          child: SingleChildScrollView(
-            child: Container(
-              child: Column(
-                children: [
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      practice_exam_name,
-                      style: TextStyle(fontSize: 16),
-                    ),
+          child: Container(
+            child: Column(
+              children: [
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    practice_exam_name,
+                    style: TextStyle(fontSize: 16),
                   ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      '受験日：' + practice_exam_date_show,
-                      style: TextStyle(fontSize: 16),
-                    ),
+                ),
+                Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '受験日：' + practice_exam_date_show,
+                    style: TextStyle(fontSize: 16),
                   ),
-                  Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15)),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: DataTable(
-                      columns: [
-                        DataColumn(
-                          label: Text(
-                            '偏差値',
-                            style: TextStyle(fontSize: font_size),
-                          ),
+                ),
+                Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 15)),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: DataTable(
+                    columns: [
+                      DataColumn(
+                        label: Text(
+                          '偏差値',
+                          style: TextStyle(fontSize: font_size),
                         ),
-                        DataColumn(
-                          label: Text(
-                            '合計点',
-                            style: TextStyle(fontSize: font_size),
-                          ),
+                      ),
+                      DataColumn(
+                        label: Text(
+                          '合計点',
+                          style: TextStyle(fontSize: font_size),
                         ),
-                        DataColumn(
-                          label: Text(
-                            '国語',
-                            style: TextStyle(fontSize: font_size),
-                          ),
+                      ),
+                      DataColumn(
+                        label: Text(
+                          '国語',
+                          style: TextStyle(fontSize: font_size),
                         ),
-                        DataColumn(
-                          label: Text(
-                            '数学',
-                            style: TextStyle(fontSize: font_size),
-                          ),
+                      ),
+                      DataColumn(
+                        label: Text(
+                          '数学',
+                          style: TextStyle(fontSize: font_size),
                         ),
-                        DataColumn(
-                          label: Text(
-                            '英語',
-                            style: TextStyle(fontSize: font_size),
-                          ),
+                      ),
+                      DataColumn(
+                        label: Text(
+                          '英語',
+                          style: TextStyle(fontSize: font_size),
                         ),
-                        DataColumn(
-                          label: Text(
-                            '理科',
-                            style: TextStyle(fontSize: font_size),
-                          ),
+                      ),
+                      DataColumn(
+                        label: Text(
+                          '理科',
+                          style: TextStyle(fontSize: font_size),
                         ),
-                        DataColumn(
-                          label: Text(
-                            '社会',
-                            style: TextStyle(fontSize: font_size),
-                          ),
+                      ),
+                      DataColumn(
+                        label: Text(
+                          '社会',
+                          style: TextStyle(fontSize: font_size),
                         ),
-                      ],
-                      rows: [
-                        DataRow(
-                          cells: [
-                            DataCell(
-                              Text(
-                                deviation_score.toString(),
-                                style: TextStyle(fontSize: font_size),
-                              ),
-                            ),
-                            DataCell(
-                              Text(
-                                sum_score.toString(),
-                                style: TextStyle(fontSize: font_size),
-                              ),
-                            ),
-                            DataCell(
-                              Text(
-                                Japanese_score.toString(),
-                                style: TextStyle(fontSize: font_size),
-                              ),
-                            ),
-                            DataCell(
-                              Text(
-                                math_score.toString(),
-                                style: TextStyle(fontSize: font_size),
-                              ),
-                            ),
-                            DataCell(
-                              Text(
-                                English_score.toString(),
-                                style: TextStyle(fontSize: font_size),
-                              ),
-                            ),
-                            DataCell(
-                              Text(
-                                science_score.toString(),
-                                style: TextStyle(fontSize: font_size),
-                              ),
-                            ),
-                            DataCell(
-                              Text(
-                                social_studies_score.toString(),
-                                style: TextStyle(fontSize: font_size),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      '※横にスクロールできます',
-                      style: TextStyle(fontSize: 12),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
-                  SizedBox(
-                    width: double.infinity,
-                    child: DataTable(
-                      columns: [
-                        DataColumn(
-                          label: Text(
-                            '志望校',
-                            style: TextStyle(fontSize: font_size),
-                          ),
-                        ),
-                        DataColumn(
-                          label: Text(
-                            '科',
-                            style: TextStyle(fontSize: font_size),
-                          ),
-                        ),
-                        DataColumn(
-                          label: Text(
-                            'ランク',
-                            style: TextStyle(fontSize: font_size),
-                          ),
-                        ),
-                      ],
-                      rows: [
-                        DataRow(
-                          cells: [
-                            DataCell(
-                              Text(
-                                '福島',
-                                style: TextStyle(fontSize: font_size),
-                              ),
-                            ),
-                            DataCell(
-                              Text(
-                                '普通',
-                                style: TextStyle(fontSize: font_size),
-                              ),
-                            ),
-                            DataCell(
-                              Text(
-                                fukushima_rank,
-                                style: TextStyle(fontSize: font_size),
-                              ),
-                            ),
-                          ],
-                        ),
-                        DataRow(
-                          cells: [
-                            DataCell(Text(
-                              '橘',
+                      ),
+                    ],
+                    rows: [
+                      DataRow(
+                        cells: [
+                          DataCell(
+                            Text(
+                              deviation_score.toString(),
                               style: TextStyle(fontSize: font_size),
-                            )),
-                            DataCell(Text(
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              sum_score.toString(),
+                              style: TextStyle(fontSize: font_size),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              Japanese_score.toString(),
+                              style: TextStyle(fontSize: font_size),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              math_score.toString(),
+                              style: TextStyle(fontSize: font_size),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              English_score.toString(),
+                              style: TextStyle(fontSize: font_size),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              science_score.toString(),
+                              style: TextStyle(fontSize: font_size),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              social_studies_score.toString(),
+                              style: TextStyle(fontSize: font_size),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    '※横にスクロールできます',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ),
+                Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
+                SizedBox(
+                  width: double.infinity,
+                  child: DataTable(
+                    columns: [
+                      DataColumn(
+                        label: Text(
+                          '志望校',
+                          style: TextStyle(fontSize: font_size),
+                        ),
+                      ),
+                      DataColumn(
+                        label: Text(
+                          '科',
+                          style: TextStyle(fontSize: font_size),
+                        ),
+                      ),
+                      DataColumn(
+                        label: Text(
+                          'ランク',
+                          style: TextStyle(fontSize: font_size),
+                        ),
+                      ),
+                    ],
+                    rows: [
+                      DataRow(
+                        cells: [
+                          DataCell(
+                            Text(
+                              '福島',
+                              style: TextStyle(fontSize: font_size),
+                            ),
+                          ),
+                          DataCell(
+                            Text(
                               '普通',
                               style: TextStyle(fontSize: font_size),
-                            )),
-                            DataCell(Text(
-                              tachibana_rank,
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              fukushima_rank,
                               style: TextStyle(fontSize: font_size),
-                            )),
-                          ],
-                        ),
-                        DataRow(
-                          cells: [
-                            DataCell(Text(
-                              '福島東',
-                              style: TextStyle(fontSize: font_size),
-                            )),
-                            DataCell(Text(
-                              '普通',
-                              style: TextStyle(fontSize: font_size),
-                            )),
-                            DataCell(Text(
-                              fukushima_east_rank,
-                              style: TextStyle(fontSize: font_size),
-                            )),
-                          ],
-                        ),
-                        DataRow(
-                          cells: [
-                            DataCell(Text(
-                              '福島南',
-                              style: TextStyle(fontSize: font_size),
-                            )),
-                            DataCell(Text(
-                              '国際文化',
-                              style: TextStyle(fontSize: font_size),
-                            )),
-                            DataCell(Text(
-                              fukushima_south_rank,
-                              style: TextStyle(fontSize: font_size),
-                            )),
-                          ],
-                        ),
-                        DataRow(
-                          cells: [
-                            DataCell(Text(
-                              '福島成蹊',
-                              style: TextStyle(fontSize: font_size),
-                            )),
-                            DataCell(Text(
-                              '普通',
-                              style: TextStyle(fontSize: font_size),
-                            )),
-                            DataCell(Text(
-                              fukushima_seikei_rank,
-                              style: TextStyle(fontSize: font_size),
-                            )),
-                          ],
-                        ),
-                      ],
-                    ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow(
+                        cells: [
+                          DataCell(Text(
+                            '橘',
+                            style: TextStyle(fontSize: font_size),
+                          )),
+                          DataCell(Text(
+                            '普通',
+                            style: TextStyle(fontSize: font_size),
+                          )),
+                          DataCell(Text(
+                            tachibana_rank,
+                            style: TextStyle(fontSize: font_size),
+                          )),
+                        ],
+                      ),
+                      DataRow(
+                        cells: [
+                          DataCell(Text(
+                            '福島東',
+                            style: TextStyle(fontSize: font_size),
+                          )),
+                          DataCell(Text(
+                            '普通',
+                            style: TextStyle(fontSize: font_size),
+                          )),
+                          DataCell(Text(
+                            fukushima_east_rank,
+                            style: TextStyle(fontSize: font_size),
+                          )),
+                        ],
+                      ),
+                      DataRow(
+                        cells: [
+                          DataCell(Text(
+                            '福島南',
+                            style: TextStyle(fontSize: font_size),
+                          )),
+                          DataCell(Text(
+                            '国際文化',
+                            style: TextStyle(fontSize: font_size),
+                          )),
+                          DataCell(Text(
+                            fukushima_south_rank,
+                            style: TextStyle(fontSize: font_size),
+                          )),
+                        ],
+                      ),
+                      DataRow(
+                        cells: [
+                          DataCell(Text(
+                            '福島成蹊',
+                            style: TextStyle(fontSize: font_size),
+                          )),
+                          DataCell(Text(
+                            '普通',
+                            style: TextStyle(fontSize: font_size),
+                          )),
+                          DataCell(Text(
+                            fukushima_seikei_rank,
+                            style: TextStyle(fontSize: font_size),
+                          )),
+                        ],
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
