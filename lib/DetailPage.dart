@@ -15,9 +15,14 @@ class _DetailPage extends State<DetailPage> {
   List<Map<String, dynamic>> _data = [];
   late int _ID;
 
-  String practice_exam_name = '';
-  String practice_exam_date = '';
-  String practice_exam_date_show = '';
+  String practice_exam_name = "";
+  String practice_exam_date = "";
+  String practice_exam_date_show = "";
+  String fukushima_rank = "";
+  String tachibana_rank = "";
+  String fukushima_east_rank = "";
+  String fukushima_south_rank = "";
+  String fukushima_seikei_rank = "";
   int deviation_score = 0;
   int Japanese_score = 0;
   int math_score = 0;
@@ -49,6 +54,11 @@ class _DetailPage extends State<DetailPage> {
       science_score = _data[0]['science_score'];
       social_studies_score = _data[0]['social_studies_score'];
       sum_score = _data[0]['sum_score'];
+      fukushima_rank = _data[0]['fukushima_rank'];
+      tachibana_rank = _data[0]['tachibana_rank'];
+      fukushima_east_rank = _data[0]['fukushima_east_rank'];
+      fukushima_south_rank = _data[0]['fukushima_south_rank'];
+      fukushima_seikei_rank = _data[0]['fukushima_seikei_rank'];
     });
   }
 
@@ -184,67 +194,6 @@ class _DetailPage extends State<DetailPage> {
                       style: TextStyle(fontSize: 12),
                     ),
                   ),
-
-                  /*
-                SizedBox(
-                  width: double.infinity,
-                  child: DataTable(
-                    headingRowHeight: 0,
-                    columns: [
-                      DataColumn(
-                        label: Text(''),
-                      ),
-                      DataColumn(
-                        label: Text(''),
-                      ),
-                    ],
-                    rows: [
-                      DataRow(
-                        cells: [
-                          DataCell(Text('偏差値')),
-                          DataCell(Text('70')),
-                        ],
-                      ),
-                      DataRow(
-                        cells: [
-                          DataCell(Text('合計点')),
-                          DataCell(Text(_data[0]['sum_score'].toString())),
-                        ],
-                      ),
-                      DataRow(
-                        cells: [
-                          DataCell(Text('国語')),
-                          DataCell(Text(_data[0]['Japanese_score'].toString())),
-                        ],
-                      ),
-                      DataRow(
-                        cells: [
-                          DataCell(Text('数学')),
-                          DataCell(Text(_data[0]['math_score'].toString())),
-                        ],
-                      ),
-                      DataRow(
-                        cells: [
-                          DataCell(Text('英語')),
-                          DataCell(Text(_data[0]['English_score'].toString())),
-                        ],
-                      ),
-                      DataRow(
-                        cells: [
-                          DataCell(Text('理科')),
-                          DataCell(Text(_data[0]['science_score'].toString())),
-                        ],
-                      ),
-                      DataRow(
-                        cells: [
-                          DataCell(Text('社会')),
-                          DataCell(Text(
-                              _data[0]['social_studies_score'].toString())),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),*/
                   Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10)),
                   SizedBox(
                     width: double.infinity,
@@ -286,7 +235,7 @@ class _DetailPage extends State<DetailPage> {
                             ),
                             DataCell(
                               Text(
-                                'S',
+                                fukushima_rank,
                                 style: TextStyle(fontSize: font_size),
                               ),
                             ),
@@ -303,7 +252,7 @@ class _DetailPage extends State<DetailPage> {
                               style: TextStyle(fontSize: font_size),
                             )),
                             DataCell(Text(
-                              'S',
+                              tachibana_rank,
                               style: TextStyle(fontSize: font_size),
                             )),
                           ],
@@ -319,7 +268,7 @@ class _DetailPage extends State<DetailPage> {
                               style: TextStyle(fontSize: font_size),
                             )),
                             DataCell(Text(
-                              'S',
+                              fukushima_east_rank,
                               style: TextStyle(fontSize: font_size),
                             )),
                           ],
@@ -335,7 +284,7 @@ class _DetailPage extends State<DetailPage> {
                               style: TextStyle(fontSize: font_size),
                             )),
                             DataCell(Text(
-                              'S',
+                              fukushima_south_rank,
                               style: TextStyle(fontSize: font_size),
                             )),
                           ],
@@ -351,7 +300,7 @@ class _DetailPage extends State<DetailPage> {
                               style: TextStyle(fontSize: font_size),
                             )),
                             DataCell(Text(
-                              'S',
+                              fukushima_seikei_rank,
                               style: TextStyle(fontSize: font_size),
                             )),
                           ],

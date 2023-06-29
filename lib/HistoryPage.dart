@@ -58,7 +58,6 @@ class _HistoryPage extends State<HistoryPage> {
                             barrierDismissible: false,
                             builder: (context) {
                               return AlertDialog(
-                                //icon: Icon(Icons.info),
                                 title: Text('本当にこのデータを削除しますか？'),
                                 content: Text('選択したデータが削除されます。'),
                                 actions: [

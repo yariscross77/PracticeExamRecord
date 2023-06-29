@@ -16,11 +16,13 @@ class MyApp extends StatelessWidget {
       home: const Navigation(),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: [
+        const Locale('en'),
         const Locale('ja'),
       ],
-      // locale: const Locale('ja'),
     );
   }
 }
